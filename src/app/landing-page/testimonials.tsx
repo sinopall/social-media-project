@@ -44,6 +44,8 @@ function TestimonialCard({
       <Image
         src={img}
         alt={client}
+        width={80}
+        height={80}
         className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-gray-500"
       />
       <p className="text-gray-700 italic mb-4">&quot;{feedback}&quot;</p>

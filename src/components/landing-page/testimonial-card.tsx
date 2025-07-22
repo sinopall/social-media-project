@@ -19,6 +19,8 @@ export function TestimonialCard({
       <Image
         src={img}
         alt={client}
+        width={80}
+        height={80}
         className="mb-3 h-16 w-16 rounded-full object-cover border-2 border-gray-200 shadow"
       />
       <h6 className="text-lg font-semibold text-gray-900">{client}</h6>

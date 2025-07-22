@@ -17,14 +17,14 @@ const nextConfig: NextConfig = {
     ];
   },
   // This is an example of how to set up rewrites for API calls.
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://sosmed-production-011e.up.railway.app/api/:path*',
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: 'https://sosmed-production-011e.up.railway.app/api/:path*',
+  //     },
+  //   ];
+  // },
 
   images: {
     remotePatterns: [

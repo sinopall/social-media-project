@@ -5,8 +5,10 @@ import { authService } from '@/services/auth/authService';
 import AdminBaseLayout from '@/components/admin/AdminBaseLayout';
 import RegisterForm from '@/components/admin/auth/RegisterForm';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async ({
@@ -21,13 +23,14 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const data = await authService.register({ username, email, password });
-      console.log('Registration successful:', data);
+      await authService.register({ username, email, password });
       toast.success('Account created successfully!');
-      // TODO: Redirect user after successful registration
-    } catch (err) {
-      console.error('Registration failed:', err);
-      toast.error('Failed to create account. Please try again.');
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      router.push('/admin/auth/login');
+    } catch (err: any) {
+      toast.error(
+        `Failed to register. ${err.response?.data?.error || 'Please try again.'}`
+      );
     } finally {
       setIsLoading(false);
     }

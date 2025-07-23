@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
-  // This function contains the logic that was previously in the form
   const handleLogin = async ({
     email,
     password,
@@ -20,12 +19,12 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const data = await authService.login({ email, password });
-      console.log('Login successful:', data);
+      await authService.login({ email, password });
       toast.success('Login successful!');
-    } catch (err) {
-      console.error('Login failed:', err);
-      toast.error('Failed to login. Please check your credentials.');
+    } catch (err: any) {
+      toast.error(
+        `Failed to login. ${err.response?.data?.error || 'Please try again.'}`
+      );
     } finally {
       setIsLoading(false);
     }
